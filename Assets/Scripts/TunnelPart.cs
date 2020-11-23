@@ -18,7 +18,7 @@ public class TunnelPart : MonoBehaviour {
 	float width;
 	float spacing;
 
-	public void init(Vector3 start)
+	public void init(Vector3 start, int seed)
 	{
 		meshRenderer = gameObject.AddComponent<MeshRenderer>();
 		meshRenderer.material = (Material) Resources.Load("TunnelMat");
@@ -34,7 +34,7 @@ public class TunnelPart : MonoBehaviour {
 		List<Vector2> uvs = new List<Vector2>(1000);
 		List<int> tris = new List<int>(1000);
 		
-		System.Random rand = new System.Random();
+		System.Random rand = new System.Random(seed);
 		
 		int index = 0;
 		int numParts = 200;

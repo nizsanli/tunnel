@@ -15,6 +15,9 @@ public class Main : MonoBehaviour {
 
 	int numAdded = 0;
 
+	// integer seed value to randomize levels
+	public int generationSeed;
+
 	// Use this for initialization
 	void Start () {
 		Camera.main.transform.Translate(new Vector3(Camera.main.orthographicSize * Camera.main.aspect, 0f, 0f));
@@ -22,7 +25,7 @@ public class Main : MonoBehaviour {
 		parts = new List<TunnelPart>(100);
 
 		part = (TunnelPart) Instantiate(partPrefab, Vector3.zero, Quaternion.identity);
-		part.init(Vector3.zero);
+		part.init(Vector3.zero, generationSeed);
 		parts.Add(part);
 		part.transform.parent = partsContainer;
 		numAdded++;
@@ -35,7 +38,7 @@ public class Main : MonoBehaviour {
 		{
 			Vector3 newStart = part.MidPoint;
 			part = (TunnelPart) Instantiate(partPrefab, Vector3.zero, Quaternion.identity);
-			part.init(newStart);
+			part.init(newStart, generationSeed);
 			parts.Add(part);
 			part.transform.parent = partsContainer;
 			numAdded++;
